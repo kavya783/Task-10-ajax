@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Character encoding -->
+  <meta charset="UTF-8">
+
+  <!-- Makes page responsive on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Custom CSS -->
+  <link href="./assets/css/style.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Page Title -->
+  <title>CRUD Operations using Ajax</title>
+</head>
+
+<body>
+
+<!-- Page heading -->
+<h1 class="text-center pt-3">Crud Operations Using Ajax</h1>
+
+<!-- Main container -->
+<div class="container mt-4">
+
+  <!-- Header section with title and Add button -->
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h3 class="m-0 text-success">Students List</h3>
+
+    <!-- Button opens Add Student modal -->
+    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#studentModal">
+      Add Student
+    </button>
+  </div>
+
+  <!-- Table visible only on medium & larger screens -->
+  <div class="table-responsive d-none d-md-block">
+
+    <!-- Students table -->
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-secondary">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Branch</th>
+          <th>Phone No</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <!-- Data inserted dynamically by JS -->
+      <tbody id="tableBody"></tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- Card view for mobile screens -->
+<div class="d-md-none px-2 ps-3 ms-3 me-3 pe-3" id="cardContainer"></div>
+
+<!-- Container for viewing student details -->
+<div id="viewCardContainer"></div>
+
+<!-- View Student Modal -->
+<div class="modal fade" id="viewStudentModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-md modal-sm-down">
+    <div class="modal-content">
+
+      <!-- Modal header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Student</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Student data will be injected here -->
+      <div class="modal-body d-flex justify-content-center align-items-center p-2">
+        <div id="viewModalBody" class="w-100"></div>
+      </div>
+
+      <!-- Close button -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Delete confirmation modal -->
+      <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title">Confirm Delete</h5>
+              <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Confirmation message -->
+            <div class="modal-body">
+              Are you sure you want to delete this employee?
+            </div>
+
+            <!-- Delete actions -->
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+<!-- Add / Edit Student Modal -->
+<div class="modal fade" id="studentModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+
+      <!-- Modal title -->
+      <div class="modal-header">
+        <h5 class="modal-title">Add Student</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Form fields -->
+      <div class="modal-body">
+
+        <!-- Name field -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-control">
+          <div id="nameerror" class="text-danger"></div>
+        </div>
+
+        <!-- Branch field -->
+        <div class="mb-3">
+          <label for="branch" class="form-label">Branch</label>
+          <input type="text" id="branch" class="form-control">
+          <div id="brancherror" class="text-danger"></div>
+        </div>
+
+        <!-- Phone field -->
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" id="phone" class="form-control">
+          <div id="phoneerror" class="text-danger"></div>
+        </div>
+
+        <!-- Image upload -->
+        <div class="mb-3">
+          <label class="form-label">Upload Image</label>
+          <input type="file" class="form-control" id="image" accept="image/png/jpg,.png,.jpg">
+          <div id="imageerror" class="text-danger"></div>
+
+          <!-- Image preview -->
+          <img id="previewImage"
+               style="width:100px;display:none;margin-top:10px;border-radius:5px;">
+        </div>
+
+      </div>
+
+      <!-- Add/Update button -->
+      <div class="modal-footer">
+        <button type="button" id="addStudentBtn" class="btn btn-primary">
+          Add Student
+        </button>
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="./assets/javascript/script.js"></script>
+
+</body>
+</html>
